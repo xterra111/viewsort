@@ -15,7 +15,7 @@ const SortViewer = () => {
 
 	useEffect(() => {
 		for (let i = 5; i < 600; i++) {
-			startArr.push(Math.floor(Math.random() * (800 - 5 + 1) + 5));
+			startArr.push(Math.floor(Math.random() * (700 - 5 + 1) + 5));
 
 			setLoaded(true);
 		}
