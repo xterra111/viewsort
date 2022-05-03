@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./SortViewer.css";
 
 const SortViewer = () => {
 	// initialize sort viewer array
@@ -13,8 +14,8 @@ const SortViewer = () => {
 	// };
 
 	useEffect(() => {
-		for (let i = 5; i < 100; i++) {
-			startArr.push(Math.floor(Math.random() * (10000 - 5 + 1) + 5));
+		for (let i = 5; i < 600; i++) {
+			startArr.push(Math.floor(Math.random() * (800 - 5 + 1) + 5));
 
 			setLoaded(true);
 		}
@@ -22,10 +23,10 @@ const SortViewer = () => {
 	}, []); // end useEffect ;
 
 	return (
-		<div>
+		<div className="linecontainer">
 			{" "}
 			{startArr.map((item, index) => (
-				<div key={index}>{item}</div>
+				<div className="bar" key={index} style={{ height: `${item}px` }}></div>
 			))}
 		</div>
 	);
