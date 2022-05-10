@@ -14,20 +14,30 @@ const SortViewer = () => {
 	// };
 
 	useEffect(() => {
-		for (let i = 0; i < 600; i++) {
+		for (let i = 0; i < 649; i++) {
 			startArr.push(Math.floor(Math.random() * (700 - 5 + 1) + 5));
 
 			setLoaded(true);
 		}
 		console.log(startArr);
-	}, []); // end useEffect ;
+	}, [startArr]); // end useEffect ;
 
+	//reset array
+	const resetArray = () => {
+		setStartArr([]);
+		setLoaded(false);
+
+		console.log(startArr);
+	};
 	return (
 		<div className="linecontainer">
 			{" "}
 			{startArr.map((item, index) => (
 				<div className="bar" key={index} style={{ height: `${item}px` }}></div>
 			))}
+			<div>
+				<button onClick={resetArray}>Generate New Array</button>
+			</div>
 		</div>
 	);
 };
