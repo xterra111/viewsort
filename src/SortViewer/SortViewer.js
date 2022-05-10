@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./SortViewer.css";
+import MergeSortAnimation from "../SortAlgos/MergeSortAnimation";
 
 const SortViewer = () => {
 	// initialize sort viewer array
 	const [startArr, setStartArr] = useState([]);
 	const [loaded, setLoaded] = useState(false);
-	//const startArr = [];
-	//Randomizer
-	// Allows random intervals that do not start with 1. So you can get a random number from 10 to 15 for example.
-
-	// const randomIntFromInterval = (min, max) => {
-	// 	return Math.floor(Math.random() * (max - min + 1) + min);
-	// };
 
 	useEffect(() => {
 		for (let i = 0; i < 649; i++) {
@@ -29,6 +23,31 @@ const SortViewer = () => {
 
 		console.log(startArr);
 	};
+
+	const mergeSort = () => {
+		const animations = MergeSortAnimation(startArr);
+		for (let i = 0; i < animations.length; i++) {
+			const arrayBars = document.getElementsByClassName("bar");
+			const isColorChange = i % 3 !== 2;
+			if (isColorChange) {
+				const [barOneIdx, barTwoIdx] = animations[i];
+				const barOneStyle = arrayBars[barOneIdx].style;
+				const barTwoStyle = arrayBars[barTwoIdx].style;
+				const color = i % 3 === 0 ? "red" : "blue";
+				setTimeout(() => {
+					barOneStyle.backgroundColor = color;
+					barTwoStyle.backgroundColor = color;
+				}, i * 3);
+			} else {
+				setTimeout(() => {
+					const [barOneIdx, newHeight] = animations[i];
+					const barOneStyle = arrayBars[barOneIdx].style;
+					barOneStyle.height = `${newHeight}px`;
+				}, i * 3);
+			}
+		}
+	};
+
 	return (
 		<div className="linecontainer">
 			{" "}
@@ -37,6 +56,9 @@ const SortViewer = () => {
 			))}
 			<div>
 				<button onClick={resetArray}>Generate New Array</button>
+			</div>
+			<div>
+				<button onClick={mergeSort}>Merge Sort</button>
 			</div>
 		</div>
 	);
