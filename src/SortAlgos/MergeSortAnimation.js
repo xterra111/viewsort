@@ -1,5 +1,3 @@
-import React from "react";
-
 const MergeSortAnimation = (arrayToSort) => {
 	const animations = [];
 	if (arrayToSort.length <= 1) return arrayToSort;
@@ -54,10 +52,13 @@ const doMerge = (
 	let startingIndex2 = startingIndex;
 	let middleIndex1 = middleIndex + 1;
 
-	while (startingIndex1 <= middleIndex && middleIndex1 <= endingIndex) {
-		animations.push([startingIndex1, middleIndex1]);
+	while (startingIndex2 <= middleIndex && middleIndex1 <= endingIndex) {
+		//compare the values and change the color.
+		animations.push([startingIndex2, middleIndex1]);
+		//Do it a second time to revert the color.
+		animations.push([startingIndex2, middleIndex1]);
 
-		if (arrayToSort[startingIndex1] <= tempArray[middleIndex1]) {
+		if (tempArray[startingIndex2] <= tempArray[middleIndex1]) {
 			animations.push([startingIndex1, tempArray[startingIndex2]]);
 			arrayToSort[startingIndex1++] = tempArray[startingIndex2++];
 		} else {
@@ -65,9 +66,9 @@ const doMerge = (
 			arrayToSort[startingIndex1++] = tempArray[middleIndex1++];
 		}
 	}
-	while (startingIndex1 <= middleIndex) {
-		animations.push([startingIndex1, startingIndex1]);
-		animations.push([startingIndex1, startingIndex1]);
+	while (startingIndex2 <= middleIndex) {
+		animations.push([startingIndex2, startingIndex2]);
+		animations.push([startingIndex2, startingIndex2]);
 		animations.push([startingIndex1, tempArray[startingIndex2]]);
 		arrayToSort[startingIndex1++] = tempArray[startingIndex2++];
 	}
