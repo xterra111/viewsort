@@ -8,8 +8,8 @@ const SortViewer = () => {
 	const [loaded, setLoaded] = useState(false);
 
 	useEffect(() => {
-		for (let i = 0; i < 649; i++) {
-			startArr.push(Math.floor(Math.random() * (700 - 5 + 1) + 5));
+		for (let i = 0; i < 300; i++) {
+			startArr.push(Math.floor(Math.random() * (640 - 5 + 1) + 5));
 
 			setLoaded(true);
 		}
